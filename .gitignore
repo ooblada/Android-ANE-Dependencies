@@ -1,0 +1,41 @@
+# General
+temp
+build.config
+*.log
+native_library/android/dummyane/src/main/java
+
+# Flash Builder
+actionscript/bin
+.actionScriptProperties
+.flexProperties
+.flexLibProperties
+
+# Eclipse
+.settings
+.project
+
+# Android Studio
+.idea
+
+# Android
+android/bin
+android/gen
+android/res
+android/lint.xml
+.classpath
+proguard-project.txt
+project.properties
+android/local.properties
+
+# Xcode
+xcuserdata
+
+# OS X
+Icon
+Thumbs.db
+.DS_Store
+ios/build/
+
+android/\.gradle/
+
+android/lib/build/
