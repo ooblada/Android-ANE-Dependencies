@@ -101,7 +101,7 @@ if (-not (Test-Path $currentDir\cache)) {
 }
 
 
-[xml]$XmlDocument = Get-Content $currentDir\packages.xml
+[xml]$XmlDocument = Get-Content $currentDir\packages_custom.xml
 
 
 for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
