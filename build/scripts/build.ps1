@@ -201,7 +201,7 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     }
 
     $platformXml = "<?xml version=`"1.0`" encoding=`"utf-8`"?>
-    <platform xmlns=`"http://ns.adobe.com/air/extension/19.0`">
+    <platform xmlns=`"http://ns.adobe.com/air/extension/33.1`">
         $packagedDependencies
         $packagedResources
     </platform>"
@@ -211,7 +211,7 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
 
 
     $extensionXml = "<?xml version=`"1.0`" encoding=`"UTF-8`"?>
-<extension xmlns=`"http://ns.adobe.com/air/extension/19.0`">
+<extension xmlns=`"http://ns.adobe.com/air/extension/33.1`">
     <id>$groupId.$artifactId</id>
     <name>$artifactId</name>
     <copyright></copyright>
