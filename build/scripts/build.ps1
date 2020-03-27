@@ -265,11 +265,11 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     Set-Content -Path $jPath\DummyANE.java -Value $javaContents
 
     Write-Host "gradlew clean" -ForegroundColor yellow
-    $process = Start-Process -FilePath "cmd.exe" -ArgumentList "/c", "$currentDir..\..\..\native_library\android\gradlew.bat","clean" -WorkingDirectory "$currentDir..\..\..\native_library\android" -windowstyle Hidden -PassThru
+    $process = Start-Process -FilePath "cmd.exe" -ArgumentList "/c", "$currentDir..\..\..\native_library\android\gradlew.bat","clean", "> gradlew_clean_log.log 2>&1" -WorkingDirectory "$currentDir..\..\..\native_library\android" -windowstyle Hidden -PassThru
     Wait-Process -InputObject $process
 
     Write-Host "gradlew build" -ForegroundColor yellow
-    $process2 = Start-Process -FilePath "cmd.exe" -ArgumentList "/c", "$currentDir..\..\..\native_library\android\gradlew.bat","build" -WorkingDirectory "$currentDir..\..\..\native_library\android" -windowstyle Hidden -PassThru
+    $process2 = Start-Process -FilePath "cmd.exe" -ArgumentList "/c", "$currentDir..\..\..\native_library\android\gradlew.bat","build", "> gradlew_build_log.log 2>&1" -WorkingDirectory "$currentDir..\..\..\native_library\android" -windowstyle Hidden -PassThru
     Wait-Process -InputObject $process2
 
     ##### BUILD ANE
@@ -475,7 +475,7 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
 
     Write-Host "Building" -ForegroundColor yellow
 
-    $process3 = start-process "cmd.exe" "/c $ADT_STRING" -WorkingDirectory $currentDir -PassThru -windowstyle Hidden
+    $process3 = start-process "cmd.exe" "/c $ADT_STRING > adt_log.log 2>&1" -WorkingDirectory $currentDir -PassThru -windowstyle Hidden
     Wait-Process -InputObject $process3
 
     Write-Host "Cleaning up" -ForegroundColor yellow
