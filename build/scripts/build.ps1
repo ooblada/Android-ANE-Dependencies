@@ -27,7 +27,7 @@ function Get-Package {
         }
         
         if (-not (Test-Path $packageDirectory)) {
-            New-Item -ItemType Directory -Force -Path $packageDirectory
+            New-Item -ItemType Directory -Force -Path $packageDirectory | out-null
         }
         
         Write-Host "Downloading $repoUri$groupIdPath/$artifactId/$version/$packageName.$type -OutFile $packageDirectory\$packageName.$type" -ForegroundColor yellow
@@ -97,7 +97,7 @@ if (-not (Test-Path $ADT_PATH)) {
 }
 
 if (-not (Test-Path $currentDir\cache)) {
-    New-Item -Path $currentDir\cache -ItemType "directory"
+    New-Item -Path $currentDir\cache -ItemType "directory" | out-null
 }
 
 
@@ -124,7 +124,7 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     }
 
     if (-not (Test-Path $currentDir\cache\$category)) {
-        New-Item -Path $currentDir\cache\$category -ItemType "directory"
+        New-Item -Path $currentDir\cache\$category -ItemType "directory" | out-null
     }
     
 
@@ -252,12 +252,12 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
         $jPath = $jPath + "\" + $_ 
         #echo $jPath
         if (-not (Test-Path $jPath)) {
-            New-Item -Path $jPath -ItemType "directory"
+            New-Item -Path $jPath -ItemType "directory" | out-null
         }
     }
 
     if (-not (Test-Path "$jPath\DummyANE.java")) {
-        New-Item -Path $jPath\DummyANE.java
+        New-Item -Path $jPath\DummyANE.java | out-null
     } 
 
     Write-Host "Write DummyANE.java" -ForegroundColor yellow
@@ -298,8 +298,8 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
 
             Write-Host "need to write new strings $currentDir\platforms\android\$resFolderName\values\strings.xml" -ForegroundColor yellow
 
-            New-Item -Path $currentDir\platforms\android\$resFolderName\values -ItemType "directory"
-            New-Item -Path $currentDir\platforms\android\$resFolderName\values\strings.xml
+            New-Item -Path $currentDir\platforms\android\$resFolderName\values -ItemType "directory" | out-null
+            New-Item -Path $currentDir\platforms\android\$resFolderName\values\strings.xml | out-null
             Set-Content -Path $currentDir\platforms\android\$resFolderName\values\strings.xml -Value $defaultResource
         }
 
@@ -307,7 +307,7 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     Copy-Item -Path $currentDir\cache\$category\$groupId-$artifactId-$version.jar $currentDir\platforms\android\$groupId-$artifactId-$version.jar -Force
 
     if (-not (Test-Path "$currentDir\..\..\anes\$category")) {
-        New-Item -Path $currentDir\..\..\anes\$category -ItemType "directory"
+        New-Item -Path $currentDir\..\..\anes\$category -ItemType "directory" | out-null
     }
 
     
@@ -327,12 +327,12 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
         ## Do JNI here
         if ((Test-Path "$currentDir\cache\$category\$groupId-$artifactId-$version-jni")) {
             if (-not (Test-Path "$currentDir\platforms\android\libs")) {
-                New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs"
+                New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs" | out-null
             }
             if ((Test-Path "$currentDir\cache\$category\$groupId-$artifactId-$version-jni\x86")) {
                 $HasLibs_X86 = $True
                 if (-not (Test-Path "$currentDir\platforms\android\libs\x86")) {
-                   New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs\x86"
+                   New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs\x86" | out-null
                 }
                 Get-ChildItem -Path $currentDir\cache\$category\$groupId-$artifactId-$version-jni\x86 -Recurse | Copy-Item -Destination $currentDir\platforms\android\libs\x86
             }
@@ -349,12 +349,12 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
         ## Do JNI here
         if ((Test-Path "$currentDir\cache\$category\$groupId-$artifactId-$version-jni")) {
             if (-not (Test-Path "$currentDir\platforms\android\libs")) {
-                New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs"
+                New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs" | out-null
             }
             if ((Test-Path "$currentDir\cache\$category\$groupId-$artifactId-$version-jni\arm64-v8a")) {
                 $HasLibs_ARM64 = $True
                 if (-not (Test-Path "$currentDir\platforms\android\libs\arm64-v8a")) {
-                   New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs\arm64-v8a"
+                   New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs\arm64-v8a" | out-null
                 }
                 Get-ChildItem -Path $currentDir\cache\$category\$groupId-$artifactId-$version-jni\arm64-v8a -Recurse | Copy-Item -Destination $currentDir\platforms\android\libs\arm64-v8a
             }
@@ -371,12 +371,12 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
         ## Do JNI here
         if ((Test-Path "$currentDir\cache\$category\$groupId-$artifactId-$version-jni")) {
             if (-not (Test-Path "$currentDir\platforms\android\libs")) {
-                New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs"
+                New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs" | out-null
             }
             if ((Test-Path "$currentDir\cache\$category\$groupId-$artifactId-$version-jni\armeabi-v7a")) {
                 $HasLibs_ARM = $True
                 if (-not (Test-Path "$currentDir\platforms\android\libs\armeabi-v7a")) {
-                   New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs\armeabi-v7a"
+                   New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs\armeabi-v7a" | out-null
                 }
                 Get-ChildItem -Path $currentDir\cache\$category\$groupId-$artifactId-$version-jni\armeabi-v7a -Recurse | Copy-Item -Destination $currentDir\platforms\android\libs\armeabi-v7a
             }
@@ -409,32 +409,32 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
                 }
                 
                 if (-not (Test-Path "$currentDir\platforms\android\$depend_resFolderName\values")) {
-                    New-Item -Path $currentDir\platforms\android\$depend_resFolderName\values -ItemType "directory"
-                    New-Item -Path $currentDir\platforms\android\$depend_resFolderName\values\strings.xml
+                    New-Item -Path $currentDir\platforms\android\$depend_resFolderName\values -ItemType "directory" | out-null
+                    New-Item -Path $currentDir\platforms\android\$depend_resFolderName\values\strings.xml | out-null
                     Set-Content -Path $currentDir\platforms\android\$depend_resFolderName\values\strings.xml -Value $defaultResource
                 }
                 if ((Test-Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni)) {
                     if (-not (Test-Path "$currentDir\platforms\android\libs")) {
-                        New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs"
+                        New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs" | out-null
                     }
                     if ((Test-Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\x86)) {
                         $HasLibs_X86 = $True
                         if (-not (Test-Path "$currentDir\platforms\android\libs\x86")) {
-                            New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs\x86"
+                            New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs\x86" | out-null
                         }
                         Get-ChildItem -Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\x86 -Recurse | Copy-Item -Destination $currentDir\platforms\android\libs\x86
                     }
                     if ((Test-Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\arm64-v8a)) {
                         $HasLibs_ARM64 = $True
                         if (-not (Test-Path "$currentDir\platforms\android\libs\arm64-v8a")) {
-                            New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs\arm64-v8a"
+                            New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs\arm64-v8a" | out-null
                         }
                         Get-ChildItem -Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\arm64-v8a -Recurse | Copy-Item -Destination $currentDir\platforms\android\libs\arm64-v8a
                     }
                     if ((Test-Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\armeabi-v7a)) {
                         $HasLibs_ARM = $True
                         if (-not (Test-Path "$currentDir\platforms\android\libs\armeabi-v7a")) {
-                            New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs\armeabi-v7a"
+                            New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs\armeabi-v7a" | out-null
                         }
                         Get-ChildItem -Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\armeabi-v7a -Recurse | Copy-Item -Destination $currentDir\platforms\android\libs\armeabi-v7a
                     }
