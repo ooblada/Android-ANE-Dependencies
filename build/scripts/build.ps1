@@ -150,6 +150,7 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     ## depend PUT BACK
 
     if($numDependancies -gt 0) {
+        Write-Host "Current package has $numDependancies dependencies" -ForegroundColor green
         $dependancies = $XmlDocument.packages.package[$i].dependancies
         for($j=0;$j -lt $numDependancies;$j++) {
             if($numDependancies -eq 1) {
@@ -474,6 +475,7 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     $ADT_STRING += "-platform default -C platforms/default library.swf"
 
     Write-Host "Building" -ForegroundColor yellow
+    Write-Host "ADT CMD is $ADT_STRING" -ForegroundColor green
 
     $process3 = start-process "cmd.exe" "/c $ADT_STRING > adt_log.log 2>&1" -WorkingDirectory $currentDir -PassThru -windowstyle Hidden
     Wait-Process -InputObject $process3
@@ -481,8 +483,10 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     Write-Host "Cleaning up" -ForegroundColor yellow
 
     if ($type -eq "aar") {
+        Write-Host "RM $resFolderName" -ForegroundColor yellow
         Remove-Item $currentDir\platforms\android\$resFolderName -Recurse
     }
+    Write-Host "RM $groupId-$artifactId-$version.jar" -ForegroundColor yellow
     Remove-Item $currentDir\platforms\android\$groupId-$artifactId-$version.jar
     if ((Test-Path "$currentDir\platforms\android\libs")) {
         Remove-Item $currentDir\platforms\android\libs -Recurse
@@ -506,8 +510,10 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
 
             if ($depend_type -eq "aar") {
                 Remove-Item $currentDir\platforms\android\$depend_groupId-$depend_artifactId-$depend_version-res -Recurse
+                Write-Host "RM $depend_groupId-$depend_artifactId-$depend_version-res" -ForegroundColor yellow
             }
             Remove-Item $currentDir\platforms\android\$depend_groupId-$depend_artifactId-$depend_version.jar
+            Write-Host "RM $depend_groupId-$depend_artifactId-$depend_version.jar" -ForegroundColor yellow
         }
     }
 
