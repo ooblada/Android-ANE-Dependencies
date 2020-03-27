@@ -3,6 +3,8 @@ temp
 build.config
 *.log
 native_library/android/dummyane/src/main/java
+build/scripts/extension.xml
+build/scripts/platforms/android/platform.xml
 
 # Flash Builder
 actionscript/bin
