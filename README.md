@@ -39,7 +39,7 @@ https://mvnrepository.com/artifact/org.greenrobot/eventbus/3.0.0
     <type>jar</type>
     <repo>maven</repo>
     <category>misc</category>
-    <dependancies></dependancies>
+    <dependencies></dependencies>
 </package>
 `````
 
@@ -56,7 +56,7 @@ https://mvnrepository.com/artifact/com.google.firebase/firebase-config/16.0.0
     <type>aar</type>
     <repo>google</repo>
     <category>firebase</category>
-    <dependancies>
+    <dependencies>
         <package name="firebase-abt">
             <groupId>com.google.firebase</groupId>
             <artifactId>firebase-abt</artifactId>
@@ -64,6 +64,6 @@ https://mvnrepository.com/artifact/com.google.firebase/firebase-config/16.0.0
             <type>aar</type>
             <repo>google</repo>
         </package>
-    </dependancies>
+    </dependencies>
 </package>
 `````

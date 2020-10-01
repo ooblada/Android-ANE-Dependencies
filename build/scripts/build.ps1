@@ -136,8 +136,8 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     $packagedDependencyLoops = ""
     $packagedDependencyLoops = "<packagedDependency>$groupId-$artifactId-$version.jar</packagedDependency>" 
     
-    $numDependancies = $XmlDocument.packages.package[$i].dependancies.ChildNodes.Count
-    $numResources = $numDependancies
+    $numDependencies = $XmlDocument.packages.package[$i].dependencies.ChildNodes.Count
+    $numResources = $numDependencies
 
     if ($type -eq "aar") {
         $numResources = $numResources + 1
@@ -149,33 +149,33 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
 
     ## depend PUT BACK
 
-    if($numDependancies -gt 0) {
-        Write-Host "Current package has $numDependancies dependencies" -ForegroundColor green
-        $dependancies = $XmlDocument.packages.package[$i].dependancies
-        for($j=0;$j -lt $numDependancies;$j++) {
-            if($numDependancies -eq 1) {
-                $depend_groupId = $dependancies.package.groupId
-                $depend_artifactId = $dependancies.package.artifactId
-                $depend_version = $dependancies.package.version
-                $depend_type = $dependancies.package.type
-                $depend_repo = $dependancies.package.repo
+    if($numDependencies -gt 0) {
+        Write-Host "Current package has $numDependencies dependencies" -ForegroundColor green
+        $dependencies = $XmlDocument.packages.package[$i].dependencies
+        for($j=0;$j -lt $numDependencies;$j++) {
+            if($numDependencies -eq 1) {
+                $depend_groupId = $dependencies.package.groupId
+                $depend_artifactId = $dependencies.package.artifactId
+                $depend_version = $dependencies.package.version
+                $depend_type = $dependencies.package.type
+                $depend_repo = $dependencies.package.repo
                 $depend_packageName = "$depend_groupId.$depend_artifactId"
 
-                if($dependancies.package.packageName) {
-                    $depend_packageName = $dependancies.package.packageName
+                if($dependencies.package.packageName) {
+                    $depend_packageName = $dependencies.package.packageName
                 }
 
             } else {
-                $depend_groupId = $dependancies.package[$j].groupId
-                $depend_artifactId = $dependancies.package[$j].artifactId
-                $depend_version = $dependancies.package[$j].version
-                $depend_type = $dependancies.package[$j].type
-                $depend_repo = $dependancies.package[$j].repo
+                $depend_groupId = $dependencies.package[$j].groupId
+                $depend_artifactId = $dependencies.package[$j].artifactId
+                $depend_version = $dependencies.package[$j].version
+                $depend_type = $dependencies.package[$j].type
+                $depend_repo = $dependencies.package[$j].repo
                 $depend_packageName = "$depend_groupId.$depend_artifactId"
 
 
-                if($dependancies.package[$j].packageName) {
-                    $depend_packageName = $dependancies.package[$j].packageName
+                if($dependencies.package[$j].packageName) {
+                    $depend_packageName = $dependencies.package[$j].packageName
                 }
             }
             
@@ -385,21 +385,21 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     }
 
 
-    if($numDependancies -gt 0) {
-        $dependancies = $XmlDocument.packages.package[$i].dependancies
-        for($j=0;$j -lt $numDependancies;$j++) {
-            if($numDependancies -eq 1) {
-                $depend_groupId = $dependancies.package.groupId
-                $depend_artifactId = $dependancies.package.artifactId
-                $depend_version = $dependancies.package.version
-                $depend_type = $dependancies.package.type
-                $depend_repo = $dependancies.package.repo
+    if($numDependencies -gt 0) {
+        $dependencies = $XmlDocument.packages.package[$i].dependencies
+        for($j=0;$j -lt $numDependencies;$j++) {
+            if($numDependencies -eq 1) {
+                $depend_groupId = $dependencies.package.groupId
+                $depend_artifactId = $dependencies.package.artifactId
+                $depend_version = $dependencies.package.version
+                $depend_type = $dependencies.package.type
+                $depend_repo = $dependencies.package.repo
             } else {
-                $depend_groupId = $dependancies.package[$j].groupId
-                $depend_artifactId = $dependancies.package[$j].artifactId
-                $depend_version = $dependancies.package[$j].version
-                $depend_type = $dependancies.package[$j].type
-                $depend_repo = $dependancies.package[$j].repo
+                $depend_groupId = $dependencies.package[$j].groupId
+                $depend_artifactId = $dependencies.package[$j].artifactId
+                $depend_version = $dependencies.package[$j].version
+                $depend_type = $dependencies.package[$j].type
+                $depend_repo = $dependencies.package[$j].repo
             }
 
             $depend_resFolderName = "$depend_groupId-$depend_artifactId-$depend_version-res"
@@ -492,19 +492,19 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
         Remove-Item $currentDir\platforms\android\libs -Recurse
     }
 
-    if($numDependancies -gt 0) {
-        $dependancies = $XmlDocument.packages.package[$i].dependancies
-        for($j=0;$j -lt $numDependancies;$j++) {
-            if($numDependancies -eq 1) {
-                $depend_groupId = $dependancies.package.groupId
-                $depend_artifactId = $dependancies.package.artifactId
-                $depend_version = $dependancies.package.version
-                $depend_type = $dependancies.package.type
+    if($numDependencies -gt 0) {
+        $dependencies = $XmlDocument.packages.package[$i].dependencies
+        for($j=0;$j -lt $numDependencies;$j++) {
+            if($numDependencies -eq 1) {
+                $depend_groupId = $dependencies.package.groupId
+                $depend_artifactId = $dependencies.package.artifactId
+                $depend_version = $dependencies.package.version
+                $depend_type = $dependencies.package.type
             } else {
-                $depend_groupId = $dependancies.package[$j].groupId
-                $depend_artifactId = $dependancies.package[$j].artifactId
-                $depend_version = $dependancies.package[$j].version
-                $depend_type = $dependancies.package[$j].type
+                $depend_groupId = $dependencies.package[$j].groupId
+                $depend_artifactId = $dependencies.package[$j].artifactId
+                $depend_version = $dependencies.package[$j].version
+                $depend_type = $dependencies.package[$j].type
             }
 
 
