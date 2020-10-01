@@ -319,6 +319,16 @@
         <category>play-services</category>
         <dependancies/>
     </package>
+    
+    <package name="installreferrer">
+        <groupId>com.android.installreferrer</groupId>
+        <artifactId>installreferrer</artifactId>
+        <version>1.1.2</version>
+        <type>aar</type>
+        <repo>google</repo>
+        <category>play-services</category>
+        <dependancies/>
+    </package>
 
     <package name="play-services-ads-lite">
         <groupId>com.google.android.gms</groupId>
