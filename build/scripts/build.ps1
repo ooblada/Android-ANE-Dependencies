@@ -90,6 +90,7 @@ $PLAY_BILLING_REPO = "https://dl.bintray.com/google/play-billing/"
 $JCENTER_REPO ="https://jcenter.bintray.com/"
 $SPRNG_REPO = "http://repo.spring.io/libs-release/"
 $defaultResource = "<?xml version=`"1.0`" encoding=`"utf-8`"?><resources></resources>";
+$ANEIdx = "1"
 
 if (-not (Test-Path $ADT_PATH)) {
     Write-Error "Please set AIR SDK path in airsdk.config"
@@ -221,22 +222,22 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
         <platform name=`"Android-ARM`">
             <applicationDeployment>
             <nativeLibrary>classes.jar</nativeLibrary>
-            <initializer>com.tuarua.DummyANE</initializer>
-            <finalizer>com.tuarua.DummyANE</finalizer>
+            <initializer>com.tuarua.DummyANE$ANEIdx</initializer>
+            <finalizer>com.tuarua.DummyANE$ANEIdx</finalizer>
             </applicationDeployment>
         </platform>
         <platform name=`"Android-ARM64`">
             <applicationDeployment>
             <nativeLibrary>classes.jar</nativeLibrary>
-            <initializer>com.tuarua.DummyANE</initializer>
-            <finalizer>com.tuarua.DummyANE</finalizer>
+            <initializer>com.tuarua.DummyANE$ANEIdx</initializer>
+            <finalizer>com.tuarua.DummyANE$ANEIdx</finalizer>
             </applicationDeployment>
         </platform>
         <platform name=`"Android-x86`">
             <applicationDeployment>
             <nativeLibrary>classes.jar</nativeLibrary>
-            <initializer>com.tuarua.DummyANE</initializer>
-            <finalizer>com.tuarua.DummyANE</finalizer>
+            <initializer>com.tuarua.DummyANE$ANEIdx</initializer>
+            <finalizer>com.tuarua.DummyANE$ANEIdx</finalizer>
             </applicationDeployment>
         </platform>
         <platform name=`"default`">
@@ -257,13 +258,13 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
         }
     }
 
-    if (-not (Test-Path "$jPath\DummyANE.java")) {
-        New-Item -Path $jPath\DummyANE.java | out-null
+    if (-not (Test-Path "$jPath\DummyANE$ANEIdx.java")) {
+        New-Item -Path $jPath\DummyANE$ANEIdx.java | out-null
     } 
 
-    Write-Host "Write DummyANE.java" -ForegroundColor yellow
-    $javaContents = "package $groupId.$artifactIdSafe;public class DummyANE {}"
-    Set-Content -Path $jPath\DummyANE.java -Value $javaContents
+    Write-Host "Write DummyANE$ANEIdx.java" -ForegroundColor yellow
+    $javaContents = "package $groupId.$artifactIdSafe;public class DummyANE$ANEIdx {}"
+    Set-Content -Path $jPath\DummyANE$ANEIdx.java -Value $javaContents
 
     Write-Host "gradlew clean" -ForegroundColor yellow
     $process = Start-Process -FilePath "cmd.exe" -ArgumentList "/c", "$currentDir..\..\..\native_library\android\gradlew.bat","clean", "> gradlew_clean_log.log 2>&1" -WorkingDirectory "$currentDir..\..\..\native_library\android" -windowstyle Hidden -PassThru
